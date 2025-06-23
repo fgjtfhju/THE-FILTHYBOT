@@ -1,0 +1,1 @@
+# Hovedlogikk for å kjøre boten kontinuerlig

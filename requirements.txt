@@ -1,0 +1,10 @@
+pandas
+numpy
+requests
+python-dotenv
+bitget-python-sdk
+scikit-learn
+transformers
+torch
+openai
+tweepy

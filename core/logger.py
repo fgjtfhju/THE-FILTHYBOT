@@ -1,0 +1,1 @@
+# Logging av handler og daglige resultater

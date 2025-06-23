@@ -1,0 +1,1 @@
+# Strategibytte, AI-forutsigelser, sentimentanalyse

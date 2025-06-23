@@ -1,0 +1,1 @@
+# Topp 100-skanning, top 3-filter

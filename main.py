@@ -1,3 +1,6 @@
+log_trade_result(..
+.)funksjon
+
 from datetime import datetime
 
 def log_trade_result(strategy_name, result):

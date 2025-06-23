@@ -1,3 +1,9 @@
+from datetime import datetime
+
+def log_trade_result(strategy_name, result):
+   with open("strategy_results.csv", "a") as f:
+      f.write(f"{datetime.utcnow()},{strategy_name},{result}\n")
+
 import sys
 import os
 

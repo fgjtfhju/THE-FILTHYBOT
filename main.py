@@ -23,7 +23,7 @@ def choose_best_strategy():
 try:
     from bot import run_bot
 except Exception as e:
-    print(f"Import error: {e]":
+    print(f"Import error: {e}")
     raise
          
 import time

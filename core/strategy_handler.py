@@ -16,3 +16,6 @@ def execute_strategy(strategy_name, symbol, client):
     print(f"[Strategy Handler] {strategy_name} returned signal: {signal}")
 
     return signal
+
+def get_current_strategy():
+    return "range"

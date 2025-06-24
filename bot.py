@@ -1,5 +1,4 @@
-from core.strategy_handler import select_strategy
-
+from core.strategy_handler import execute_strategy
 import time
 import traceback
 from core.strategy_handler import select_strategy

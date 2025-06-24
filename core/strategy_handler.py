@@ -1,21 +1,13 @@
-def execute_strategy(strategy_name, symbol, client):
-    # Dynamisk import basert på valgt strategi
-    if strategy_name == "range_trading":
-        from strategies.range_trading import run
-    elif strategy_name == "breakout_trading":
-        from strategies.breakout_trading import run
-    elif strategy_name == "short_trading":
-        from strategies.short_trading import run
-    else:
-        raise ValueError(f"[Strategy Handler] Ukjent strategi: {strategy_name}")
+import pandas as pd
 
-    # Kjør strategien og hent signal ("buy", "sell", "hold")
-    signal = run(symbol, client)
-
-    # Logg signalet for debugformål
-    print(f"[Strategy Handler] {strategy_name} returned signal: {signal}")
-
-    return signal
-
-def get_current_strategy():
-    return "range"
+def select_strategy():
+    try:
+        df = pd.read_csv("strategy_results.csv", header=None, names=["timestamp", "strategy", "result"])
+        recent = df.tail(50)
+        grouped = recent.groupby("strategy")["result"].mean()
+        best = grouped.idxmax()
+        print(f"[AI] Best strategy: {best}")
+        return best
+    except Exception as e:
+        print(f"[AI] Strategy analysis failed: {str(e)}")
+        return "range_trading"

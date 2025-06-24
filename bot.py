@@ -1,6 +1,6 @@
 import time
 import traceback
-from strategy_handler import select_strategy
+from core.strategy_handler import select_strategy
 from trade_executor import execute_trade
 from coin_selector import select_best_coin
 from utils.logger import log

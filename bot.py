@@ -1,3 +1,5 @@
+from core.strategy_handler import select_strategy
+
 import time
 import traceback
 from core.strategy_handler import select_strategy

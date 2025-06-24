@@ -1,40 +1,32 @@
-from datetime import datetime
+import pandas as pd
+import numpy as np
 
-class BreakoutTradingStrategy:
-    def __init__(self, symbol, client, is_short=False, leverage=1):
-        self.symbol = symbol
-        self.client = client
-        self.is_short = is_short
-        self.leverage = leverage
-        self.breakout_level = None
-        self.last_price = None
+def breakout_trading(df, force_trade=False):
+    if df is None or len(df) < 20:
+        print("[Breakout] Ikke nok data for analyse")
+        return None
 
-    def analyze_market(self, klines):
-        try:
-            highs = [float(kline[2]) for kline in klines[-20:]]
-            lows = [float(kline[3]) for kline in klines[-20:]]
-            self.breakout_level = max(highs) if not self.is_short else min(lows)
-            self.last_price = float(klines[-1][4])
-            print(f"[{self.symbol}] Breakout level: {self.breakout_level}, Last price: {self.last_price}")
-        except Exception as e:
-            print(f"[ERROR] analyze_market (breakout) failed: {e}")
+    df['rolling_high'] = df['high'].rolling(window=20).max()
+    df['rolling_low'] = df['low'].rolling(window=20).min()
 
-    def should_enter_trade(self):
-        if self.breakout_level is None or self.last_price is None:
-            return False
+    last_close = df['close'].iloc[-1]
+    last_high = df['rolling_high'].iloc[-2]
+    last_low = df['rolling_low'].iloc[-2]
 
-        if not self.is_short and self.last_price > self.breakout_level:
-            print(f"[{self.symbol}] Breakout above resistance. Long entry.")
-            return True
-        elif self.is_short and self.last_price < self.breakout_level:
-            print(f"[{self.symbol}] Breakdown below support. Short entry.")
-            return True
+    if last_close > last_high:
+        print("[Breakout] Brudd opp oppdaget – LONG")
+        return {'side': 'buy', 'confidence': 0.8}
+    elif last_close < last_low:
+        print("[Breakout] Brudd ned oppdaget – SHORT")
+        return {'side': 'sell', 'confidence': 0.8}
+    else:
+        print("[Breakout] Ingen brudd – ingen handel")
 
-        return False
+        # Hvis tvungen testhandel er aktivert
+        if force_trade:
+            direction = np.random.choice(['buy', 'sell'])
+            print(f"[Breakout] Testhandel aktivert – simulerer {direction.upper()}")
+            return {'side': direction, 'confidence': 0.5}
 
-    def execute_trade(self):
-        if self.should_enter_trade():
-            direction = "short" if self.is_short else "long"
-            print(f"[TRADE] Executing {direction} breakout trade on {self.symbol} with {self.leverage}x leverage at {datetime.utcnow()}")
-            return True
-        return False
+        return None
+

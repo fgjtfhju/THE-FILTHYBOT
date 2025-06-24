@@ -7,13 +7,12 @@ class RangeStrategy:
         self.leverage = leverage
 
     def run(self):
-        print(f"[RANGE] Kjører range trading-strategi for {self.symbol}")
-        # Eksempel på range-trading (kan utvides)
+        print(f"[RANGE] Kjører range-strategi for {self.symbol}")
         order_result = place_order(
             client=self.client,
             symbol=self.symbol,
             direction="long",
             leverage=self.leverage,
-            amount=20  # dollarverdi
+            amount=20  # dollarverdi per handel
         )
         return order_result

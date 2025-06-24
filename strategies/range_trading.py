@@ -8,11 +8,19 @@ class RangeStrategy:
 
     def run(self):
         print(f"[RANGE] Kjører range-strategi for {self.symbol}")
-        order_result = place_order(
-            client=self.client,
-            symbol=self.symbol,
-            direction="long",
-            leverage=self.leverage,
-            amount=20  # dollarverdi per handel
-        )
-        return order_result
+       
+        try:
+            print("[RANGE] Forsøker å plassere ordre...")
+            order_result = place_order(
+                client=self.client,
+                symbol=self.symbol,
+                direction="long",
+                leverage=self.leverage,
+                amount=20
+            )
+            print(f"[RANGE] Ordre resultat: {order_result}")
+            return order_result
+       
+        except Exception as e:
+            print(f"[ERROR] Feil under range-ordre: {e}")
+            return None

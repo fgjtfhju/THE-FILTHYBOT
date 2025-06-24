@@ -8,11 +8,19 @@ class BreakoutStrategy:
 
     def run(self):
         print(f"[BREAKOUT] Kjører breakout-strategi for {self.symbol}")
-        order_result = place_order(
-            client=self.client,
-            symbol=self.symbol,
-            direction="long",
-            leverage=self.leverage,
-            amount=20  # dollarverdi per handel
-        )
-        return order_result
+       
+        try:
+            print("[BREAKOUT] Forsøker å plassere ordre...")
+            order_result = place_order(
+                client=self.client,
+                symbol=self.symbol,
+                direction="long",
+                leverage=self.leverage,
+                amount=20
+            )
+            print(f"[BREAKOUT] Ordre resultat: {order_result}")
+            return order_result
+       
+        except Exception as e:
+            print(f"[ERROR] Feil under breakout-ordre: {e}")
+            return None

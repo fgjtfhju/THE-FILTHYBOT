@@ -20,10 +20,10 @@ def choose_best_strategy():
       print(f"[AI] Strategy analysis failed: {str(e)}")
       return "range_trading" 
 
-   from bot import run_bot_cycle
+   from bot import run_bot
 import time
 
 if __name__ == "__main__":
     while True:
-        run_bot_cycle()
+        run_bot()
         time.sleep(300)  # 5 minutter pause

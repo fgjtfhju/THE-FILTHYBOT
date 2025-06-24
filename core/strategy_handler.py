@@ -11,3 +11,4 @@ def select_strategy():
     except Exception as e:
         print(f"[AI] Strategy analysis failed: {str(e)}")
         return "range_trading"
+        #Trigger redeploy

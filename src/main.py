@@ -1,8 +1,7 @@
-from bitget_sdk.rest_api import BitgetAPI
+# src/main.py
 
-def main():
-    api = BitgetAPI()
-    print("Bot is running with advanced strategy...")
+from core.bot_runner import run_bot
 
 if __name__ == "__main__":
-    main()
+    print(">>> 🚀 MAIN.PY STARTET <<<")
+    run_bot()

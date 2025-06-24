@@ -24,6 +24,4 @@ def choose_best_strategy():
 import time
 
 if __name__ == "__main__":
-    while True:
         run_bot()
-        time.sleep(300)  # 5 minutter pause

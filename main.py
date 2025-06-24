@@ -20,7 +20,12 @@ def choose_best_strategy():
       print(f"[AI] Strategy analysis failed: {str(e)}")
       return "range_trading" 
 
-   from bot import run_bot
+try:
+    from bot import run_bot
+except Exception as e:
+    print(f"Import error: {e]":
+    raise
+         
 import time
 
 if __name__ == "__main__":

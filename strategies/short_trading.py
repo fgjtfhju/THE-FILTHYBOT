@@ -8,12 +8,11 @@ class ShortStrategy:
 
     def run(self):
         print(f"[SHORT] Kjører short-strategi for {self.symbol}")
-        # Eksempel på short-trading
         order_result = place_order(
             client=self.client,
             symbol=self.symbol,
             direction="short",
             leverage=self.leverage,
-            amount=20  # dollarverdi
+            amount=20  # dollarverdi per handel
         )
         return order_result

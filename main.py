@@ -21,10 +21,10 @@ def choose_best_strategy():
       return "range_trading" 
 
 try:
-    from bot import run_bot
+  from bot import run bot
 except Exception as e:
-    print(f"Import error: {e}")
-    raise
+   print("Import error: {e}")
+   raise
          
 import time
 

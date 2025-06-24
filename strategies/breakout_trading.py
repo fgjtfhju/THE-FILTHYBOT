@@ -8,13 +8,11 @@ class BreakoutStrategy:
 
     def run(self):
         print(f"[BREAKOUT] Kjører breakout-strategi for {self.symbol}")
-        # Eksempel på breakout-logikk (kan utvides)
         order_result = place_order(
             client=self.client,
             symbol=self.symbol,
             direction="long",
             leverage=self.leverage,
-            amount=20  # dollarverdi
+            amount=20  # dollarverdi per handel
         )
         return order_result
-
